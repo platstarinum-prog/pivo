@@ -4,102 +4,89 @@ import { Star, Quote } from 'lucide-react';
 
 const reviews = [
   {
-    name: 'Олександр К.',
+    name: 'Олег К.',
+    text: 'Отличный выбор крафтового пива! Всегда свежее разливное, приятный персонал. Мой любимый магазин в районе.',
     rating: 5,
-    text: 'Отличный магазин! Огромный выбор крафтового пива, ребята всегда помогут с выбором. Атмосфера просто супер!',
-    date: '2 недели назад',
   },
   {
-    name: 'Марія В.',
+    name: 'Анна М.',
+    text: 'Уютное место с хорошими ценами. Приходим сюда с друзьями почти каждую пятницу. Рекомендую попробовать их премиум сорта.',
     rating: 4,
-    text: 'Очень уютное место. Приходим сюда с друзьями почти каждую пятницу. Пиво всегда свежее и холодное.',
-    date: '1 месяц назад',
   },
   {
-    name: 'Дмитро П.',
+    name: 'Дмитрий В.',
+    text: 'Хороший ассортимент и адекватные цены. Особенно нравится, что можно взять пиво на разлив в свою тару.',
     rating: 4,
-    text: 'Лучший пивной магазин в районе. Цены адекватные, выбор впечатляет. Особенно нравится их коллекция стаутов.',
-    date: '3 недели назад',
   },
 ];
 
-function StarRating({ rating }: { rating: number }) {
-  return (
-    <div className="flex gap-0.5">
-      {Array.from({ length: 5 }).map((_, i) => (
-        <Star
-          key={i}
-          className={`w-4 h-4 ${
-            i < rating ? 'text-amber-500 fill-amber-500' : 'text-gray-600'
-          }`}
-        />
-      ))}
-    </div>
-  );
-}
-
 export default function Reviews() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const inView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <section id="reviews" className="relative py-24 sm:py-32" ref={ref}>
-      <div className="absolute inset-0 bg-dark-900" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-amber-500/5 rounded-full blur-[120px]" />
+    <section id="reviews" className="py-24 sm:py-32 relative">
+      <div className="absolute bottom-0 right-1/4 w-[300px] h-[200px] bg-amber-500/5 rounded-full blur-[100px] pointer-events-none" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div ref={ref} className="max-w-6xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
+          className="text-center mb-14"
         >
-          <span className="text-amber-500 text-sm font-medium tracking-widest uppercase mb-4 block">
+          <span className="text-amber-500 text-sm font-medium tracking-widest uppercase">
             Отзывы
           </span>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
-            Что говорят <span className="text-gradient">гости</span>
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mt-3">
+            Что говорят клиенты
           </h2>
-
-          <div className="flex items-center justify-center gap-3 mb-2">
-            <div className="flex gap-1">
-              {Array.from({ length: 5 }).map((_, i) => (
+          <div className="flex items-center justify-center gap-2 mt-4">
+            <span className="text-3xl font-bold text-amber-500">4.2</span>
+            <div className="flex gap-0.5">
+              {[1, 2, 3, 4, 5].map((s) => (
                 <Star
-                  key={i}
-                  className={`w-6 h-6 ${
-                    i < 4 ? 'text-amber-500 fill-amber-500' : 'text-gray-600'
+                  key={s}
+                  className={`w-4 h-4 ${
+                    s <= 4 ? 'text-amber-500 fill-amber-500' : 'text-gray-600'
                   }`}
                 />
               ))}
             </div>
-            <span className="text-3xl font-bold text-white">4.2</span>
-            <span className="text-gray-500">/5</span>
+            <span className="text-sm text-gray-500 ml-1">Google</span>
           </div>
-          <p className="text-gray-500 text-sm">На основе отзывов посетителей</p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {reviews.map((review, i) => (
             <motion.div
               key={review.name}
-              initial={{ opacity: 0, y: 40 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.15 * i }}
-              className="glass rounded-2xl p-6 sm:p-8 hover:bg-white/[0.06] transition-all duration-500 group relative overflow-hidden"
+              initial={{ opacity: 0, y: 30 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.1 * i, ease: 'easeOut' }}
+              className="glass rounded-2xl p-6 hover:bg-white/[0.06] transition-all duration-300"
             >
-              <Quote className="absolute top-4 right-4 w-8 h-8 text-amber-500/10 group-hover:text-amber-500/20 transition-colors duration-500" />
+              <Quote className="w-8 h-8 text-amber-500/20 mb-4" />
 
-              <StarRating rating={review.rating} />
+              <p className="text-gray-300 text-sm leading-relaxed mb-5">
+                &laquo;{review.text}&raquo;
+              </p>
 
-              <p className="text-gray-300 mt-4 mb-6 leading-relaxed">{review.text}</p>
-
-              <div className="flex items-center gap-3 pt-4 border-t border-white/5">
-                <div className="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-400 font-semibold text-sm">
-                  {review.name[0]}
-                </div>
+              <div className="flex items-center justify-between">
                 <div>
-                  <div className="text-white font-medium text-sm">{review.name}</div>
-                  <div className="text-gray-500 text-xs">{review.date}</div>
+                  <div className="font-semibold text-sm">{review.name}</div>
+                  <div className="flex gap-0.5 mt-1">
+                    {[1, 2, 3, 4, 5].map((s) => (
+                      <Star
+                        key={s}
+                        className={`w-3 h-3 ${
+                          s <= review.rating
+                            ? 'text-amber-500 fill-amber-500'
+                            : 'text-gray-600'
+                        }`}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
             </motion.div>

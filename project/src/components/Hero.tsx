@@ -1,84 +1,88 @@
 import { motion } from 'framer-motion';
-import { ChevronDown, MapPin } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage:
-            "url('https://images.pexels.com/photos/260922/pexels-photo-260922.jpeg?auto=compress&cs=tinysrgb&w=1920')",
-        }}
-      />
-      <div className="absolute inset-0 hero-overlay" />
+      {/* Background image with overlay */}
+      <div className="absolute inset-0">
+        <img
+          src="https://images.pexels.com/photos/2607832/pexels-photo-2607832.jpeg?auto=compress&cs=tinysrgb&w=1920"
+          alt="Beer background"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-dark-900/80 backdrop-blur-sm" />
+        <div className="absolute inset-0 bg-gradient-to-b from-dark-900/40 via-transparent to-dark-900" />
+      </div>
 
-      <div className="absolute inset-0 bg-gradient-to-r from-amber-500/5 to-transparent" />
+      {/* Glow accent */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-amber-500/10 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="relative z-10 text-center px-4 sm:px-6 max-w-4xl mx-auto">
+      <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="mb-6"
+          transition={{ duration: 0.8, ease: 'easeOut' }}
         >
-          <span className="inline-block px-4 py-2 rounded-full glass text-amber-400 text-sm font-medium tracking-wider uppercase">
-            Beer Store / Kyiv
+          <span className="inline-block text-amber-500 text-sm font-medium tracking-widest uppercase mb-4">
+            Beer Man
           </span>
         </motion.div>
 
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight"
+          transition={{ duration: 0.8, delay: 0.15, ease: 'easeOut' }}
+          className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight leading-[1.1] mb-6"
         >
-          <span className="text-white">Craft Beer</span>
+          Craft Beer
           <br />
-          <span className="text-gradient">&amp; Good Mood</span>
+          <span className="text-amber-500 text-glow-amber">&amp; Good Mood</span>
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-lg sm:text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed"
+          transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
+          className="text-gray-400 text-base sm:text-lg max-w-xl mx-auto mb-10 leading-relaxed"
         >
-          Beer Man — магазин качественного пива в Киеве
+          Beer Man — пивной магазин в Киеве с разливным и бутылочным пивом
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
+          transition={{ duration: 0.8, delay: 0.45, ease: 'easeOut' }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <a
-            href="#features"
-            className="group px-8 py-4 bg-amber-500 hover:bg-amber-400 text-dark-900 font-semibold rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-amber-500/25 hover:-translate-y-0.5"
+            href="#menu"
+            className="px-8 py-3.5 bg-amber-500 hover:bg-amber-400 text-dark-900 font-semibold rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-amber-500/25 text-sm"
           >
-            Посмотреть ассортимент
+            Ассортимент
           </a>
           <a
             href="#contacts"
-            className="group flex items-center gap-2 px-8 py-4 glass hover:bg-white/10 text-white font-semibold rounded-xl transition-all duration-300 hover:-translate-y-0.5"
+            className="px-8 py-3.5 glass hover:bg-white/10 text-white font-medium rounded-xl transition-all duration-200 text-sm"
           >
-            <MapPin className="w-5 h-5 text-amber-500" />
             Как добраться
           </a>
         </motion.div>
       </div>
 
+      {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1.5 }}
+        transition={{ delay: 1.2, duration: 0.8 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
       >
-        <a href="#about" className="flex flex-col items-center text-gray-500 hover:text-amber-400 transition-colors">
-          <span className="text-xs mb-2 tracking-widest uppercase">Scroll</span>
-          <ChevronDown className="w-5 h-5 animate-bounce" />
-        </a>
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+        >
+          <ChevronDown className="w-5 h-5 text-gray-500" />
+        </motion.div>
       </motion.div>
     </section>
   );
