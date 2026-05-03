@@ -9,9 +9,9 @@ const stores = [
     hours: 'Ежедневно: 11:00 — 23:00',
     coords: '50.4454+30.6244',
     images: [
-      'https://images.pexels.com/photos/5858056/pexels-photo-5858056.jpeg?auto=compress&cs=tinysrgb&w=1000',
-      'https://images.pexels.com/photos/1592931/pexels-photo-1592931.jpeg?auto=compress&cs=tinysrgb&w=1000',
-      'https://images.pexels.com/photos/544960/pexels-photo-544960.jpeg?auto=compress&cs=tinysrgb&w=1000',
+      '/пивко1.png',
+      '/пивко2.png',
+      '/пивко3.png',
     ],
   },
   {
@@ -20,9 +20,9 @@ const stores = [
     hours: 'Ежедневно: 11:00 — 23:00',
     coords: '50.4200+30.6350',
     images: [
-      'https://images.pexels.com/photos/2789240/pexels-photo-2789240.jpeg?auto=compress&cs=tinysrgb&w=1000',
-      'https://images.pexels.com/photos/5659753/pexels-photo-5659753.jpeg?auto=compress&cs=tinysrgb&w=1000',
-      'https://images.pexels.com/photos/16976661/pexels-photo-16976661.jpeg?auto=compress&cs=tinysrgb&w=1000',
+      '/пивко1.png',
+      '/пивко2.png',
+      '/пивко3.png',
     ],
   },
   {
@@ -31,9 +31,9 @@ const stores = [
     hours: 'Ежедневно: 11:00 — 23:00',
     coords: '50.4050+30.6400',
     images: [
-      'https://images.pexels.com/photos/5858056/pexels-photo-5858056.jpeg?auto=compress&cs=tinysrgb&w=1000',
-      'https://images.pexels.com/photos/544960/pexels-photo-544960.jpeg?auto=compress&cs=tinysrgb&w=1000',
-      'https://images.pexels.com/photos/2789240/pexels-photo-2789240.jpeg?auto=compress&cs=tinysrgb&w=1000',
+      '/пивко1.png',
+      '/пивко2.png',
+      '/пивко3.png',
     ],
   },
 ];
@@ -89,7 +89,7 @@ export default function Stores() {
               </div>
 
               <div className="flex items-center gap-2">
-                <a
+                
                   href={`https://www.google.com/maps/dir/?api=1&destination=${store.coords}`}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -112,7 +112,6 @@ export default function Stores() {
         </div>
       </div>
 
-      {/* Lightbox */}
       {lightbox !== null && (
         <motion.div
           initial={{ opacity: 0 }}
@@ -131,7 +130,7 @@ export default function Stores() {
           <div className="flex flex-col items-center max-w-2xl w-full">
             <motion.img
               key={lightbox.imageIndex}
-              src={stores[lightbox.storeIndex].images[lightbox.imageIndex].replace('w=1000', 'w=1400')}
+              src={stores[lightbox.storeIndex].images[lightbox.imageIndex]}
               alt={`${stores[lightbox.storeIndex].name} - ${lightbox.imageIndex + 1}`}
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
