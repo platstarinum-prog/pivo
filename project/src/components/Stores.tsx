@@ -89,7 +89,7 @@ export default function Stores() {
               </div>
 
               <div className="flex items-center gap-2">
-                
+                <a
                   href={`https://www.google.com/maps/dir/?api=1&destination=${store.coords}`}
                   target="_blank"
                   rel="noopener noreferrer"
