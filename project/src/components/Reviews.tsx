@@ -10,7 +10,7 @@ const reviews = [
   },
   {
     name: 'Анна М.',
-    text: 'Уютное место с хорошими ценами. Приходим сюда с друзьями почти каждую пятницу. Рекомендую попробовать их премиум сорта.',
+    text: 'Уютное место с хорошими ценами. Приходим сюда с друзьями почти каждую пятницу. Рекомендую премиум сорта.',
     rating: 4,
   },
   {
@@ -26,9 +26,9 @@ export default function Reviews() {
 
   return (
     <section id="reviews" className="py-24 sm:py-32 relative">
-      <div className="absolute bottom-0 right-1/4 w-[300px] h-[200px] bg-amber-500/5 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-1/2 right-0 w-[300px] h-[200px] bg-amber-500/5 rounded-full blur-[100px] pointer-events-none" />
 
-      <div ref={ref} className="max-w-6xl mx-auto px-4 sm:px-6">
+      <div ref={ref} className="max-w-5xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -41,19 +41,21 @@ export default function Reviews() {
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mt-3">
             Что говорят клиенты
           </h2>
-          <div className="flex items-center justify-center gap-2 mt-4">
-            <span className="text-3xl font-bold text-amber-500">4.2</span>
-            <div className="flex gap-0.5">
-              {[1, 2, 3, 4, 5].map((s) => (
-                <Star
-                  key={s}
-                  className={`w-4 h-4 ${
-                    s <= 4 ? 'text-amber-500 fill-amber-500' : 'text-gray-600'
-                  }`}
-                />
-              ))}
+          <div className="flex items-center justify-center gap-2 mt-5">
+            <span className="text-4xl font-bold text-amber-500">4.2</span>
+            <div className="flex flex-col items-start gap-1 ml-2">
+              <div className="flex gap-0.5">
+                {[1, 2, 3, 4, 5].map((s) => (
+                  <Star
+                    key={s}
+                    className={`w-4 h-4 ${
+                      s <= 4 ? 'text-amber-500 fill-amber-500' : 'text-gray-600'
+                    }`}
+                  />
+                ))}
+              </div>
+              <span className="text-xs text-gray-500">Google Reviews</span>
             </div>
-            <span className="text-sm text-gray-500 ml-1">Google</span>
           </div>
         </motion.div>
 
@@ -64,11 +66,11 @@ export default function Reviews() {
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.1 * i, ease: 'easeOut' }}
-              className="glass rounded-2xl p-6 hover:bg-white/[0.06] transition-all duration-300"
+              className="glass-card rounded-2xl p-6 hover-lift"
             >
-              <Quote className="w-8 h-8 text-amber-500/20 mb-4" />
+              <Quote className="w-8 h-8 text-amber-500/15 mb-4" />
 
-              <p className="text-gray-300 text-sm leading-relaxed mb-5">
+              <p className="text-gray-300 text-sm leading-relaxed mb-6">
                 &laquo;{review.text}&raquo;
               </p>
 

@@ -4,7 +4,8 @@ import { Beer, Menu, X } from 'lucide-react';
 
 const navLinks = [
   { label: 'О нас', href: '#about' },
-  { label: 'Меню', href: '#menu' },
+  { label: 'Ассортимент', href: '#menu' },
+  { label: 'Магазины', href: '#stores' },
   { label: 'Отзывы', href: '#reviews' },
   { label: 'Контакты', href: '#contacts' },
 ];
@@ -28,7 +29,7 @@ export default function Navbar() {
         scrolled ? 'glass-strong shadow-lg shadow-black/20' : 'bg-transparent'
       }`}
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
         <a href="#" className="flex items-center gap-2 group">
           <Beer className="w-7 h-7 text-amber-500 group-hover:rotate-12 transition-transform duration-300" />
           <span className="text-lg font-semibold tracking-tight">
